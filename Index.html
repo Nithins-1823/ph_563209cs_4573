@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Alert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff9d;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      font-size: 2.5rem;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .scan {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .progress-bar {
+      width: 300px;
+      height: 20px;
+      border: 2px solid #00ff9d;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: #00ff9d;
+      animation: load 6s linear forwards;
+    }
+
+    @keyframes load {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+    .final {
+      display: none;
+      color: red;
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ff9d;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>⚠ YOUR PHONE IS HACKED ⚠</h1>
+
+  <div class="scan">Scanning device...</div>
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <div class="final" id="finalMsg">
+    😈 All your data has been captured!<br><br>
+    (Just kidding 😂)
+  </div>
+
+  <button class="btn" onclick="location.reload()">Run Scan Again</button>
+</div>
+
+<script>
+  // Fake hacker typing effect
+  const messages = [
+    "Accessing contacts...",
+    "Downloading photos...",
+    "Tracking location...",
+    "Bypassing security...",
+    "Uploading data..."
+  ];
+
+  let i = 0;
+  const scanText = document.querySelector('.scan');
+
+  const interval = setInterval(() => {
+    if (i < messages.length) {
+      scanText.innerText = messages[i];
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 1000);
+
+  // Show final message
+  setTimeout(() => {
+    document.getElementById("finalMsg").style.display = "block";
+    document.querySelector(".btn").style.display = "inline-block";
+  }, 6500);
+
+  // Optional vibration (works on mobile)
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200]);
+  }
+</script>
+
+</body>
+</html>
